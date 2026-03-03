@@ -16,7 +16,7 @@ public class ItemDto {
 
     private String name;
 
-    private int position;
+    private Integer position;
 
-    private boolean active;
+    private Boolean active;
 }
