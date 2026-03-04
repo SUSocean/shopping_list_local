@@ -47,7 +47,7 @@ public class UserController {
         return new ResponseEntity<>(userDtoMapper.mapToUserDto(savedUserEntity), HttpStatus.CREATED);
     }
 
-    @GetMapping(path = "/apiusers/me")
+    @GetMapping(path = "/api/users/me")
     public ResponseEntity<UserDto> getUser(
             HttpSession httpSession
     ){
