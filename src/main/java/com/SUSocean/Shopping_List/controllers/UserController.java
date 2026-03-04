@@ -36,7 +36,7 @@ public class UserController {
         this.simpleListMapper = simpleListMapper;
     }
 
-    @PostMapping(path = "/users")
+    @PostMapping(path = "/api/users")
     public ResponseEntity<UserDto> createUser(
             HttpSession httpSession,
             @RequestBody RequestUserDto user
@@ -47,7 +47,7 @@ public class UserController {
         return new ResponseEntity<>(userDtoMapper.mapToUserDto(savedUserEntity), HttpStatus.CREATED);
     }
 
-    @GetMapping(path = "users/me")
+    @GetMapping(path = "/apiusers/me")
     public ResponseEntity<UserDto> getUser(
             HttpSession httpSession
     ){
@@ -58,7 +58,7 @@ public class UserController {
         return new ResponseEntity<>(userDtoMapper.mapToUserDto(user), HttpStatus.OK);
     }
 
-    @DeleteMapping(path = "/users")
+    @DeleteMapping(path = "/api/users")
     public ResponseEntity<Void> deleteUser(HttpSession httpSession){
         Long userId = (Long) httpSession.getAttribute("userId");
 
@@ -69,7 +69,7 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping(path = "/users/lists")
+    @PostMapping(path = "/api/users/lists")
     public ResponseEntity<SimpleListDto> createList(
             HttpSession httpSession,
             @RequestBody SimpleListDto list
@@ -80,7 +80,7 @@ public class UserController {
         return new ResponseEntity<>(simpleListMapper.mapToSimpleListDto(savedListEntity), HttpStatus.CREATED);
     }
 
-    @PatchMapping(path = "/users/lists/remove/{list_id}")
+    @PatchMapping(path = "/api/users/lists/remove/{list_id}")
     public ResponseEntity<SimpleListDto> removeList(
             HttpSession httpSession,
             @PathVariable("list_id") UUID list_id

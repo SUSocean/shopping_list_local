@@ -35,7 +35,7 @@ public class ListController {
         this.itemMapper = itemMapper;
     }
 
-    @GetMapping(path = "/lists/{list_id}")
+    @GetMapping(path = "/api/lists/{list_id}")
     public ResponseEntity<OpenedListDto> getList(
             HttpSession httpSession,
             @PathVariable("list_id") UUID list_id
@@ -47,7 +47,7 @@ public class ListController {
         return new ResponseEntity<>(openedListMapper.mapToOpenedListDto(listEntity), HttpStatus.OK);
     }
 
-    @PatchMapping(path = "/lists/{list_id}/users/add")
+    @PatchMapping(path = "/api/lists/{list_id}/users/add")
     public ResponseEntity<OpenedListDto> addUser(
             HttpSession httpSession,
             @PathVariable("list_id") UUID list_id,
@@ -60,7 +60,7 @@ public class ListController {
         return new ResponseEntity<>(openedListMapper.mapToOpenedListDto(listEntity), HttpStatus.OK);
     }
 
-    @PatchMapping(path = "/lists/{list_id}/users/remove")
+    @PatchMapping(path = "/api/lists/{list_id}/users/remove")
     public ResponseEntity<OpenedListDto> removeUser(
             HttpSession httpSession,
             @PathVariable("list_id") UUID list_id,
@@ -73,7 +73,7 @@ public class ListController {
         return new ResponseEntity<>(openedListMapper.mapToOpenedListDto(listEntity), HttpStatus.OK);
     }
 
-    @PostMapping(path = "/lists/{list_id}/item/add")
+    @PostMapping(path = "/api/lists/{list_id}/item/add")
     public ResponseEntity<ItemDto> createItem(
             HttpSession httpSession,
             @PathVariable("list_id") UUID list_id,
@@ -86,7 +86,7 @@ public class ListController {
         return new ResponseEntity<>(itemMapper.mapToItemDto(itemEntity), HttpStatus.OK);
     }
 
-    @PatchMapping(path = "/lists/{list_id}/item/{item_id}/remove")
+    @PatchMapping(path = "/api/lists/{list_id}/item/{item_id}/remove")
     public ResponseEntity<ItemDto> removeItem(
             HttpSession httpSession,
             @PathVariable("list_id") UUID list_id,
@@ -99,7 +99,7 @@ public class ListController {
         return new ResponseEntity<>(itemMapper.mapToItemDto(itemEntity), HttpStatus.OK);
     }
 
-    @PatchMapping(path = "/lists/{list_id}/item/{item_id}/edit")
+    @PatchMapping(path = "/api/lists/{list_id}/item/{item_id}/edit")
     public ResponseEntity<ItemDto> editItem(
             HttpSession httpSession,
             @PathVariable("list_id") UUID list_id,
@@ -113,7 +113,7 @@ public class ListController {
         return new ResponseEntity<>(itemMapper.mapToItemDto(itemEntity), HttpStatus.OK);
     }
 
-    @PatchMapping(path = "/lists/{list_id}/reorder")
+    @PatchMapping(path = "/api/lists/{list_id}/reorder")
     public ResponseEntity<List<ItemDto>> reorderList(
             HttpSession httpSession,
             @PathVariable("list_id") UUID list_id,
@@ -126,7 +126,7 @@ public class ListController {
         return new ResponseEntity<>(itemList, HttpStatus.OK);
     }
 
-    @PatchMapping(path = "/lists/{list_id}/rename")
+    @PatchMapping(path = "/api/lists/{list_id}/rename")
     public ResponseEntity<SimpleListDto> renameList(
             HttpSession httpSession,
             @PathVariable("list_id") UUID list_id,

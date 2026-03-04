@@ -74,7 +74,7 @@ public class ListControllerIntegrationTests {
         sessionAttrs.put("userId", savedUserEntity.getId());
 
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/lists/" + savedListEntity.getId())
+                MockMvcRequestBuilders.get("/api/lists/" + savedListEntity.getId())
                         .sessionAttrs(sessionAttrs)
         ).andExpect(
                 MockMvcResultMatchers.jsonPath("$.id").value(savedListEntity.getId().toString())
@@ -97,7 +97,7 @@ public class ListControllerIntegrationTests {
         ListEntity savedListEntity =  listService.createList(simpleListDto, savedUserEntity.getId());
 
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/lists/" + savedListEntity.getId())
+                MockMvcRequestBuilders.get("/api/lists/" + savedListEntity.getId())
         ).andExpect(
                 MockMvcResultMatchers.status().isForbidden()
         ).andExpect(
@@ -121,7 +121,7 @@ public class ListControllerIntegrationTests {
         sessionAttrs.put("userId", savedUserEntityB.getId());
 
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/lists/" + savedListEntity.getId())
+                MockMvcRequestBuilders.get("/api/lists/" + savedListEntity.getId())
                         .sessionAttrs(sessionAttrs)
         ).andExpect(
                 MockMvcResultMatchers.status().isForbidden()
@@ -151,7 +151,7 @@ public class ListControllerIntegrationTests {
         String SimpleUserDtoBJson = objectMapper.writeValueAsString(simpleUserDtoB);
 
         mockMvc.perform(
-                MockMvcRequestBuilders.patch("/lists/" + savedListEntity.getId() + "/users/add")
+                MockMvcRequestBuilders.patch("/api/lists/" + savedListEntity.getId() + "/users/add")
                         .sessionAttrs(sessionAttrs)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(SimpleUserDtoBJson)
@@ -182,7 +182,7 @@ public class ListControllerIntegrationTests {
         sessionAttrs.put("userId", savedUserEntityA.getId());
 
         mockMvc.perform(
-                MockMvcRequestBuilders.patch("/lists/" + savedListEntity.getId() + "/users/remove")
+                MockMvcRequestBuilders.patch("/api/lists/" + savedListEntity.getId() + "/users/remove")
                         .sessionAttrs(sessionAttrs)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(SimpleUserDtoBJson)
@@ -205,7 +205,7 @@ public class ListControllerIntegrationTests {
         sessionAttrs.put("userId", savedUserEntity.getId());
 
         mockMvc.perform(
-                MockMvcRequestBuilders.post("/lists/" + savedListEntity.getId() + "/item/add")
+                MockMvcRequestBuilders.post("/api/lists/" + savedListEntity.getId() + "/item/add")
                         .sessionAttrs(sessionAttrs)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestItemDtoAJson)
@@ -236,7 +236,7 @@ public class ListControllerIntegrationTests {
         sessionAttrs.put("userId", savedUserEntity.getId());
 
         mockMvc.perform(
-                MockMvcRequestBuilders.patch("/lists/" + savedListEntity.getId() + "/item/"+ savedItem.getId() +"/remove")
+                MockMvcRequestBuilders.patch("/api/lists/" + savedListEntity.getId() + "/item/"+ savedItem.getId() +"/remove")
                         .sessionAttrs(sessionAttrs)
         ).andExpect(
                 MockMvcResultMatchers.jsonPath("$.id").value(savedItem.getId().toString())
@@ -267,7 +267,7 @@ public class ListControllerIntegrationTests {
         sessionAttrs.put("userId", savedUserEntity.getId());
 
         mockMvc.perform(
-                MockMvcRequestBuilders.patch("/lists/" + savedListEntity.getId() + "/item/" + savedItem.getId() + "/edit")
+                MockMvcRequestBuilders.patch("/api/lists/" + savedListEntity.getId() + "/item/" + savedItem.getId() + "/edit")
                         .sessionAttrs(sessionAttrs)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(itemBDtoJson)
@@ -277,7 +277,7 @@ public class ListControllerIntegrationTests {
         ).andExpect(
                 MockMvcResultMatchers.jsonPath("$.name").value(itemDtoB.getName())
         ).andExpect(
-                MockMvcResultMatchers.jsonPath("$.active").value(itemDtoB.isActive())
+                MockMvcResultMatchers.jsonPath("$.active").value(itemDtoB.getActive())
         );
     }
 
@@ -308,7 +308,7 @@ public class ListControllerIntegrationTests {
         Map<String, Object> sessionAttrs = new HashMap<>();
         sessionAttrs.put("userId", savedUserEntity.getId());
         mockMvc.perform(
-                MockMvcRequestBuilders.patch("/lists/" + savedListEntity.getId() + "/reorder")
+                MockMvcRequestBuilders.patch("/api/lists/" + savedListEntity.getId() + "/reorder")
                         .sessionAttrs(sessionAttrs)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestListDtoJson)
@@ -339,7 +339,7 @@ public class ListControllerIntegrationTests {
         sessionAttrs.put("userId", savedUserEntity.getId());
 
         mockMvc.perform(
-                MockMvcRequestBuilders.patch("/lists/" + savedListEntity.getId() + "/rename")
+                MockMvcRequestBuilders.patch("/api/lists/" + savedListEntity.getId() + "/rename")
                         .sessionAttrs(sessionAttrs)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(simpleListDtoJson)

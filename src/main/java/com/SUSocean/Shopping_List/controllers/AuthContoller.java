@@ -25,7 +25,7 @@ public class AuthContoller {
         this.userDtoMapper = userDtoMapper;
     }
 
-    @PostMapping(path = "/auth/login")
+    @PostMapping(path = "/api/auth/login")
     public ResponseEntity<UserDto> login(
             @RequestBody RequestUserDto requestUserDto,
             HttpSession httpSession
@@ -40,7 +40,7 @@ public class AuthContoller {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping(path = "/auth/logout")
+    @PostMapping(path = "/api/auth/logout")
     public ResponseEntity<Void> logout(HttpSession httpSession){
 
         httpSession.invalidate();
@@ -49,7 +49,7 @@ public class AuthContoller {
 
     }
 
-    @GetMapping("/auth/check")
+    @GetMapping("/api/auth/check")
     public ResponseEntity<Boolean> checkSession(HttpServletRequest request) {
 
         HttpSession session = request.getSession(false);

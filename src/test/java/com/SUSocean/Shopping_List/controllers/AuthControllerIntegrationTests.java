@@ -45,7 +45,7 @@ public class AuthControllerIntegrationTests {
         String testRequestUserDtoJson = objectMapper.writeValueAsString(testRequestUserDto);
 
         mockMvc.perform(
-                MockMvcRequestBuilders.post("/auth/login")
+                MockMvcRequestBuilders.post("/api/auth/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(testRequestUserDtoJson)
         ).andExpect(MockMvcResultMatchers.status().isOk());
@@ -60,7 +60,7 @@ public class AuthControllerIntegrationTests {
 
 
         mockMvc.perform(
-                MockMvcRequestBuilders.post("/auth/login")
+                MockMvcRequestBuilders.post("/api/auth/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(testRequestUserDtoJson)
         ).andExpect(MockMvcResultMatchers.status().isBadRequest()
@@ -72,7 +72,7 @@ public class AuthControllerIntegrationTests {
     @Test
     public void testThatAuthCheckReturn401WhenHttpsSessionIsNotSet() throws Exception{
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/auth/check")
+                MockMvcRequestBuilders.get("/api/auth/check")
         ).andExpect(MockMvcResultMatchers.status().isUnauthorized());
     }
 
@@ -86,7 +86,7 @@ public class AuthControllerIntegrationTests {
 
 
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/auth/check")
+                MockMvcRequestBuilders.get("/api/auth/check")
                         .sessionAttrs(sessionAttrs)
         ).andExpect(MockMvcResultMatchers.status().isOk());
     }
@@ -99,7 +99,7 @@ public class AuthControllerIntegrationTests {
         String testRequestUserDtoBJson = objectMapper.writeValueAsString(testRequestUserDtoB);
 
         mockMvc.perform(
-                MockMvcRequestBuilders.post("/auth/login")
+                MockMvcRequestBuilders.post("/api/auth/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(testRequestUserDtoBJson)
         ).andExpect(MockMvcResultMatchers.status().isUnauthorized()
