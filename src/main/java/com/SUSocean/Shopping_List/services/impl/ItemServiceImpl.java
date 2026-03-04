@@ -136,7 +136,7 @@ public class ItemServiceImpl implements ItemService {
             throw new ForbiddenException("Item does not belong to this list");
         }
 
-        itemEntity.setActive(item.isActive());
+        itemEntity.setActive(item.getActive());
         itemEntity.setName(item.getName());
 
         return itemEntity;
