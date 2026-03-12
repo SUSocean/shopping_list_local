@@ -1,4 +1,4 @@
-To succesefully run the program you need the folowing requirements:
+To succesefully run the program you need the folowing:
 - Java 17+
 - Docker
 
