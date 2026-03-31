@@ -1,4 +1,4 @@
-To run this app make sure you have the folowing: Docker, Java 17+
+To run this app make sure you have the folowing: Docker, Java 17+ (JDK)
 
 1. Run Docker
 2. In console navigate to project folder
